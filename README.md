@@ -1,1 +1,1 @@
-# Secret-Auction
+This is an auction program in which we enters the number of people going to bid and then the person name and the amount they are bidding our code examines the bidding amounts the declares a person with highest bid as the winner and the speciality of our code after entering every person's bidding details the screen is cleared so that the next peron who's going to bid can't know the previous person's bid amoount in this way we are ensuring people privacy.
