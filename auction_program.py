@@ -1,5 +1,5 @@
 import pyfiglet
-from replit import clear
+import os
 from termcolor import colored
 import time
 import csv
@@ -7,6 +7,7 @@ from datetime import datetime
 import warnings
 from requests.exceptions import RequestsDependencyWarning
 
+# Suppress specific warnings for cleaner output
 warnings.filterwarnings("ignore", category=RequestsDependencyWarning)
 
 # Global variables for auction data
@@ -14,7 +15,12 @@ auction_history = []
 leaderboard = {}
 MIN_BID_INCREMENT = 10  # Minimum bid increment
 
+def clear():
+    """Clear the terminal screen (works on both Windows and Unix-based systems)."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def countdown_timer(seconds):
+    """Display a countdown before the auction starts."""
     print(colored(f"\nAuction will start in {seconds} seconds...", "blue"))
     for i in range(seconds, 0, -1):
         print(colored(f"Starting in {i}...", "yellow"))
@@ -22,12 +28,14 @@ def countdown_timer(seconds):
     print(colored("\nAuction has started!", "green"))
 
 def auction_summary(bids):
+    """Display the summary of all bids placed in the current auction round."""
     print("\n--- Auction Round Summary ---")
     for name, bid in bids.items():
         print(f"{name} placed a bid of ${bid}")
     print("\n-----------------------------")
 
 def update_leaderboard(winner_names, max_bid):
+    """Update the leaderboard with new wins and bid totals."""
     for winner in winner_names:
         if winner not in leaderboard:
             leaderboard[winner] = {"wins": 0, "total_bids": 0}
@@ -35,6 +43,7 @@ def update_leaderboard(winner_names, max_bid):
         leaderboard[winner]["total_bids"] += max_bid
 
 def print_top_3():
+    """Print the top 3 auctioneers based on the leaderboard."""
     sorted_leaderboard = sorted(leaderboard.items(), key=lambda x: (-x[1]["wins"], -x[1]["total_bids"]))
     print("\n--- Top 3 Auctioneers ---")
     if sorted_leaderboard:
@@ -47,6 +56,7 @@ def print_top_3():
     print(f"\nMax Bid Ever: ${max_bid_ever}\n--------------------------")
 
 def print_leaderboard():
+    """Display the auction leaderboard showing all past rounds."""
     print("\n--- Auction Leaderboard ---")
     for idx, (winners, bid) in enumerate(auction_history, 1):
         winners_str = ', '.join(winners)
@@ -54,8 +64,8 @@ def print_leaderboard():
     print("\n--------------------------")
 
 def export_history_to_file():
-    """Export auction history to file"""
-    filename = f"auction_history_{datetime.now().strftime('%Y-%m-%d_%H-%M')}.csv"
+    """Export auction history to a CSV file."""
+    filename = f"auction_history_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["Round", "Winners", "Bid"])
@@ -64,6 +74,7 @@ def export_history_to_file():
     print(colored(f"\nAuction history has been exported to {filename}", "cyan"))
 
 def auction_winner():
+    """Conduct an auction round, determine the winner(s), and update the leaderboard."""
     print(pyfiglet.figlet_format("Secret Auction"))
     
     # Input validation for number of auctioneers
@@ -116,6 +127,7 @@ def auction_winner():
     print_leaderboard()
 
 def main():
+    """Main function to start and manage the auction system."""
     print(colored("Welcome to the Secret Auction Program!", "magenta"))
     
     # User-defined countdown timer before auction starts
