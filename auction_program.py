@@ -4,6 +4,10 @@ from termcolor import colored
 import time
 import csv
 from datetime import datetime
+import warnings
+from requests.exceptions import RequestsDependencyWarning
+
+warnings.filterwarnings("ignore", category=RequestsDependencyWarning)
 
 # Global variables for auction data
 auction_history = []
