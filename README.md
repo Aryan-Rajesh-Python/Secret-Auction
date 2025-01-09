@@ -1,27 +1,27 @@
 # Secret Auction Program
 
-A fun and interactive auction program where auctioneers can place bids, and the winner is declared based on the highest bid. It supports multiple rounds, leaderboard tracking, and a countdown timer before the auction begins.
+Welcome to the **Secret Auction Program**! This Python-based auction system allows multiple auctioneers to place bids, and it determines the winner based on the highest bid for each round. The program also provides an option to save auction history and view the leaderboard with the top auctioneers.
 
 ## Features
 
-- **Auction Countdown**: Users can set a countdown time before the auction begins.
-- **Auction Process**: Multiple auctioneers can participate, and they place their bids. The auctioneer with the highest bid wins the round.
-- **Multiple Winners**: If multiple auctioneers have the same highest bid, it's a tie.
-- **Leaderboard**: Keeps track of the top 3 auctioneers based on wins and total bid amounts.
-- **Auction History**: Displays all rounds, winners, and bid amounts.
-- **Input Validation**: Ensures that user inputs (auctioneers' names and bid amounts) are valid.
+- **Countdown Timer**: A countdown before the auction starts, customizable by the user.
+- **Auction Rounds**: Multiple auction rounds where auctioneers place bids.
+- **Auction Summary**: After each round, the program shows the summary of bids placed.
+- **Leaderboard**: Displays the top 3 auctioneers based on the number of wins and total bids.
+- **Auction History**: Keeps track of auction history (winners and bid amounts).
+- **Export to CSV**: Allows exporting the auction history to a CSV file.
+  
+## Installation
 
-## Requirements
+### Requirements
 
-Before running the program, ensure you have the following Python libraries installed:
+- Python 3.x
+- Required Python libraries (can be installed via pip):
+  - `pyfiglet`
+  - `termcolor`
+  - `tqdm`
 
-- `pyfiglet`: For displaying fun ASCII art for the program title.
-- `replit`: For clearing the terminal screen after each auction.
-- `termcolor`: For colorizing terminal output (for a better user experience).
-- `time`: For implementing the countdown timer.
-
-To install the required libraries and use the application, run the following commands:
+You can install the necessary libraries by running:
 
 ```bash
-pip install pyfiglet replit termcolor
-python auction_program.py
+pip install pyfiglet termcolor tqdm
