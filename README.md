@@ -1,4 +1,4 @@
-# Secret Auction Program
+# Secret Auction
 
 Welcome to the **Secret Auction Program**! This Python-based auction system allows multiple auctioneers to place bids, and it determines the winner based on the highest bid for each round. The program also provides an option to save auction history and view the leaderboard with the top auctioneers.
 
